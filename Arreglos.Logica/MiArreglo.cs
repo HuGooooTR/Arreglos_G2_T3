@@ -121,6 +121,53 @@ namespace Arreglos.Logica
             _arreglo[posicion] = numero;
             _tope++;
         }
+        //Metodo Elimiar 
+        public void Eliminar(int posicion)
+        {
+            if (EstaVacio)
+            {
+                throw new Exception("El arreglo esta vacio");
+            }
+            if (posicion < 0)
+            {
+                posicion = 0;
+            }
+            if (posicion > _tope)
+            {
+                posicion = _tope;
+            }
+            for(int i = posicion;i<=_tope-1;i++)
+            {
+                _arreglo[i]=_arreglo[i+1];
+            }
+            _tope--;
+        }
+
+        //metodo obtener pares
+        public MiArreglo ObtenerPares()
+        {
+
+            int contandopares = 0;
+            for (int i = 0; i < _tope; i++)
+            {
+                if (_arreglo[i]%2==0)
+                {
+                    contandopares++;
+                }
+            }
+
+          var  arreglosPares =new MiArreglo(contandopares);
+            for (int i = 0; i < _tope; i++)
+            {
+                if (_arreglo[i]%2 ==0)
+                {
+                    arreglosPares.Agregar(_arreglo[i]);
+                }
+
+            }
+            return arreglosPares;
+        }
+
 
         public override string ToString()
         {
